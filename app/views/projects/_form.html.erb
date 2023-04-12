@@ -1,0 +1,54 @@
+<center>
+
+
+<%= form_with(model: project) do |form| %>
+  <% if project.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+<br>
+<strong> Add developer </strong>
+<% if !project.new_record? %>
+<div class="row">
+    <%= form.collection_check_boxes :user_ids, User.where(user_type: 1), :id, :name  do | cb | %>
+      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+
+   
+  </div>
+<% end %>
+
+<br>
+
+<strong> Add QA </strong>
+
+<% if !project.new_record? %>
+<div class="row">
+    <%= form.collection_check_boxes :user_ids, User.where(user_type: 2), :id, :name  do | cb | %>
+      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
+    <% end %>
+   
+  </div>
+<% end %>
+
+<br>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+</center> 

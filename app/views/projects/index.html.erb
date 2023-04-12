@@ -1,0 +1,73 @@
+<p style="color: green"><%= notice %></p>
+<center>
+<hr>
+<% if current_user.user_type == 0 %>
+  <h1>Projects</h1>
+
+  <% if @projects.count != 0 %>
+
+  <div class="container" id="projects">
+    <% @projects.each do |project| %>
+      <%= render project %>
+      <p>
+        <%= link_to "Show this project", project %>
+      </p>
+      <hr>
+    <% end %>
+    </div>
+  
+
+  <% else %>
+      <p>You have not created any projects yet</p>
+  <% end %>
+
+
+  <%= link_to "New project", new_project_path %>
+
+  <% end %>
+
+<% if current_user.user_type == 1 %>
+
+  <h1>Your Assigned Project to develop</h1>
+
+  <% if @projects.count != 0 %>
+
+    <div class = "container" id="projects">
+      <% @projects.each do |project| %>
+        <%= render project %>
+        <p>
+          <%= link_to "Show this project", project %>
+        </p>
+      <% end %>
+      <hr>
+    </div>
+
+
+  <% else %>
+      <p>You have not been assigned to any project to develop</p>
+  <% end %>
+
+  <% end %>
+
+<%  if current_user.user_type == 2  %>
+
+<h1>Your Assigned Project to Assure Quality</h1>
+
+  <% if @projects.count != 0 %>
+
+    <div id="projects">
+      <% @projects.each do |project| %>
+        <%= render project %>
+        <p>
+          <%= link_to "Show this project", project %>
+        </p>
+      <% end %>
+    </div>
+
+  <% else %>
+      <p>You have not been assigned to any project to assure quality</p>
+  <% end %>
+
+<% end %>
+
+</center>

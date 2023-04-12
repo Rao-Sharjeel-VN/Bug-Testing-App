@@ -1,0 +1,69 @@
+<center>
+
+
+<%= form_with(model: project) do |form| %>
+  <% if project.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+        <% project.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+<br>
+
+<div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+<br>
+
+<div>
+    <%= form.label :deadline, style: "display: block" %>
+    <%= form.date_field :matriculation_date, :id => "datepicker" %>
+  </div>
+
+<br>
+
+
+<div>
+    <%= form.label :screenshot, style: "display: block" %>
+    <%= form.text_field :screenshot %>
+  </div>
+
+<br>
+
+
+<div>
+    <%= form.label :bug_type, style: "display: block" %>
+    <%= form.number_field :title %>
+  </div>
+<br>
+
+
+<div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.number_field :status %>
+  </div>
+<br>
+
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+
+</center> 

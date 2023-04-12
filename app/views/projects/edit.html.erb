@@ -1,0 +1,18 @@
+<center>
+
+<h1>Editing project</h1>
+
+<%= render "form", project: @project %>
+
+<br>
+
+<div>
+<% if current_user.user_type == 1 %>
+  <%= link_to "Show this project", @project %> <br>
+<% end %>
+
+  <%= link_to "Back to projects", projects_path %>
+</div>
+
+
+</center>

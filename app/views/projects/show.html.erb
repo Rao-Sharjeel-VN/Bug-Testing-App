@@ -1,0 +1,45 @@
+
+
+<hr>
+
+<center>
+<p style="color: green"><%= notice %></p>
+
+
+
+<%= render @project, from: 0 %>
+
+<div>
+<%= link_to "Back to projects", projects_path %>
+
+<br>
+<br>
+<% if current_user.user_type == 0 %>
+
+
+<%= link_to "Add or change developers/QA", edit_project_path(@project) %> 
+
+  <br>
+  <br>
+  
+  <%= button_to "Delete this project", @project, method: :delete %>
+</div>
+
+<% end %>
+
+
+
+<% if current_user.user_type == 2 %>
+
+
+<%= link_to "Add bug to this project", new_bug_path %>
+
+  <br>
+  <br>
+<%= link_to "See all bugs in this project", bugs_path %>
+  
+</div>
+
+<% end %>
+
+</center>
