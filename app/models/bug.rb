@@ -7,6 +7,7 @@ class Bug < ApplicationRecord
     validates_uniqueness_of :title, scope: :project_id
 
     belongs_to :project
-    belongs_to :user
+    belongs_to :qa, class_name: "User"
+    belongs_to :dev, class_name: "User", optional: true
 
 end
