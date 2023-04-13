@@ -28,7 +28,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 
 gem "devise"
-
+gem 'cancancan'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 
 # Use Redis adapter to run Action Cable in production

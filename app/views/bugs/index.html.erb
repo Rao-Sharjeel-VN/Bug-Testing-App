@@ -1,2 +1,30 @@
 <h1>Bugs#index</h1>
-<p>Find me in app/views/bugs/index.html.erb</p>
+
+
+
+<h1>Bugs in this project</h1>
+
+  <% if @bugs.count != 0 %>
+
+    <div id="projects">
+      <% @bugs.each do |project| %>
+        <%= render project %>
+        <p>
+          <%= link_to "Show this bug", project %>
+        </p>
+      <% end %>
+    </div>
+
+  <% else %>
+      <p>You have not been assigned to any project to assure quality</p>
+  <% end %>
+
+<% end %>
+
+
+
+
+
+
+
+

@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
-  end
+    end
 
   # GET /projects/new
   def new
@@ -77,7 +77,7 @@ class ProjectsController < ApplicationController
     def project_params
       params.require(:project).permit(:name, :user_id, user_ids: [])
     end
-
+  
     def check_manager
       return current_user.user_type == 0
     end

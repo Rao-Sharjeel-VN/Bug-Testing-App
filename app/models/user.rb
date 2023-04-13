@@ -9,5 +9,4 @@ class User < ApplicationRecord
   has_many :assigned_projects, :through=>  :user_projects, :source=> :project
 
   has_many :bugs
-
 end

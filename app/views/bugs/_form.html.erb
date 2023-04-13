@@ -1,5 +1,6 @@
 <center>
-
+this is id
+<%= c_project_id %>
 
 <%= form_with(model: project) do |form| %>
   <% if project.errors.any? %>
@@ -35,7 +36,6 @@
 
 <br>
 
-
 <div>
     <%= form.label :screenshot, style: "display: block" %>
     <%= form.text_field :screenshot %>
@@ -43,25 +43,28 @@
 
 <br>
 
-
 <div>
     <%= form.label :bug_type, style: "display: block" %>
     <%= form.number_field :title %>
-  </div>
-<br>
+</div>
 
+<br>
 
 <div>
     <%= form.label :status, style: "display: block" %>
     <%= form.number_field :status %>
-  </div>
+</div>
+
 <br>
-
-
-
-
   <div>
+          
+  <%= print :c_project %>
+  <%= print c_project_id %>
+  <%= print :c_project %>
+    
+    <%= form.hidden_field :project_id, value: c_project_id  %>
     <%= form.submit %>
+
   </div>
 <% end %>
 

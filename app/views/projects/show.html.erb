@@ -31,13 +31,17 @@
 
 <% if current_user.user_type == 2 %>
 
+<%= @project.name %>
 
-<%= link_to "Add bug to this project", new_bug_path %>
+<%= link_to "Add bug to this project", new_bug_path( project_id: @project.id ) %>
 
   <br>
   <br>
-<%= link_to "See all bugs in this project", bugs_path %>
-  
+
+<%= link_to "See all bugs in this project", bugs_path( project_id: @project.id ) %>
+
+
+
 </div>
 
 <% end %>
