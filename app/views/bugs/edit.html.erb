@@ -1,2 +1,79 @@
-<h1>Bugs#edit</h1>
-<p>Find me in app/views/bugs/edit.html.erb</p>
+<center>
+
+
+<h1>Edit your bug</h1>
+
+<br>
+<br>
+<br>
+
+<% project = @bug %>
+
+<%= form_with(model: project) do |form| %>
+    <% if project.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+        <ul>
+          <% project.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title %>
+    </div>
+  
+  <br>
+  
+  <div>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_field :description %>
+    </div>
+  
+  <br>
+  
+  <div>
+      <%= form.label :deadline, style: "display: block" %>
+      <%= form.date_field :deadline, :id => "datepicker" %>
+    </div>
+  
+  <br>
+  
+  <div>
+      <%= form.label :screenshot, style: "display: block" %>
+      <%= form.file_field :screenshot %>
+    </div>
+  
+  <br>
+  
+  <div>
+      <%= form.label :bug_type, style: "display: block" %>
+      <%= form.number_field :bug_type %>
+  </div>
+  
+  <br>
+  
+  <div>
+      <%= form.label :status, style: "display: block" %>
+      <%= form.number_field :status %>
+  </div>
+  
+  <br>
+    <div>
+            
+        # <%= @current_project%>
+
+        
+      
+
+      <%= form.submit %>
+  
+    </div>
+  <% end %>
+  
+</center>

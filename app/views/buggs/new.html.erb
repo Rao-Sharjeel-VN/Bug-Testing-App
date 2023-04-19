@@ -1,0 +1,96 @@
+
+<center>
+
+
+<h1>New bugg</h1>
+
+<% bugg = @bugg %>
+
+
+
+<%= form_with(model: bugg) do |form| %>
+  
+  
+    <% if bugg.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(bugg.errors.count, "error") %> prohibited this bugg from being saved:</h2>
+  
+        <ul>
+          <% bugg.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+  
+    <div>
+    <strong>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title %>
+      </strong>
+    </div>
+
+    <div>
+     <strong> <%= form.label :description, style: "display: block" %>
+     </strong>
+      <%= form.text_field :description %>
+    </div>
+
+
+    <div>
+<strong>
+      <%= form.label :bugg_type, style: "display: block" %>
+      </strong>
+      <%= form.radio_button :bugg_type, 0, :checked => 'true' %> Bug
+      <%= form.radio_button :bugg_type, 1 %> Feature
+    </div>
+
+
+
+    <div>
+<strong>
+      <%= form.label :status, style: "display: block" %>
+</strong>
+      <%= form.radio_button :status, 0, :checked => 'true' %> New
+      <%= form.radio_button :status, 1 %> started 
+
+     
+        <%= form.radio_button :status, 2 %> Completed
+
+      
+      
+    </div>
+    
+
+    <div>
+    <strong>
+    <%= form.label :screenshot, style: "display: block" %>
+    </strong>
+      <%= form.file_field :screenshot %>
+    </div>
+    
+  
+    <div>
+  
+    <% if @project != nil %>
+  
+   
+  
+    <%= form.hidden_field :project_id, value: @project.id %>
+  
+    <% end %>
+  
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
+
+<br>
+
+<div>
+  <%= link_to "See all bugs", buggs_path, class: "btn btn-success" %>
+</div>
+
+
+</center>

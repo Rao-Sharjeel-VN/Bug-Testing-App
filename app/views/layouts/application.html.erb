@@ -12,7 +12,7 @@
 
   <body>
 
-  <div style="color:white; background:gray;text-align:center;">
+  <div style="color:white; background: #2e78f0;text-align:center;">
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -41,7 +41,8 @@
     <%= button_to(
         "Log Out",
         destroy_user_session_path,
-        method: :delete
+        method: :delete,
+        class: 'btn btn-dark'
       ) %>
       </center>
     

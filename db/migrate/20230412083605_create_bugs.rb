@@ -10,7 +10,6 @@ class CreateBugs < ActiveRecord::Migration[7.0]
       t.integer :project_id
       t.integer :dev_id
       t.integer :qa_id
-      
 
       t.timestamps
     end

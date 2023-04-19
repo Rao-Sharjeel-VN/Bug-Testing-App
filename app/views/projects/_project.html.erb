@@ -1,12 +1,11 @@
 <div class="container" id="<%= dom_id project %>">
+
+<hr>
   <p>
-    <strong>Name:</strong>
+    <h2>
     <%= project.name %>
+    </h2>
   </p>
-
-
-
-
   <p>
 
 
@@ -17,19 +16,29 @@
 
 <strong>Developers:</strong>
 
+<% if project.users.where(user_type:1).count !=0 %> 
+
+
 <div class = "row">
 <% project.users.each do | u | %>
-  <div> 
+  <div>
     <% if u.user_type == 1 %>
       <%= u.name %>
     <% end %>
   </div>
 <% end %>
 
-<br><br>
+<% else %> 
+
+<p> No developers have been added to this project </p>
+
+<% end %>
+
+<br>
 
 <strong>QA:</strong>
 
+<% if project.users.where(user_type:1).count !=0 %> 
 <div class = "row">
 <% project.users.each do | u | %>
   <div> 
@@ -37,6 +46,12 @@
       <%= u.name %>
     <% end %>
   </div>
+<% end %>
+
+<% else %> 
+
+<p> No developers have been added to this project </p>
+
 <% end %>
 
 

@@ -8,7 +8,7 @@
 
 <div>
 <% if current_user.user_type == 1 %>
-  <%= link_to "Show this project", @project %> <br>
+  <%= link_to "Show this project", @project, :class => "btn btn-primary" %> <br>
 <% end %>
 
   <%= link_to "Back to projects", projects_path %>

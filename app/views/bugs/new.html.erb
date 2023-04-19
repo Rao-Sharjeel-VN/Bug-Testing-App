@@ -1,5 +1,8 @@
 <h1>Create a bug</h1>
 
+
+
+
 this is current_project
 <%= @project %>
 
@@ -36,7 +39,7 @@ this is current_project
   
   <div>
       <%= form.label :deadline, style: "display: block" %>
-      <%= form.date_field :matriculation_date, :id => "datepicker" %>
+      <%= form.date_field :deadline, :id => "datepicker" %>
     </div>
   
   <br>
@@ -64,9 +67,8 @@ this is current_project
     <div>
             
         # <%= @current_project%>
-  <%= @project %>
 
-    <%= hidden_field value: @project.id %>
+    <%= form.hidden_field :project_id, value: @project.id %>
 
         
       

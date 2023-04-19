@@ -1,28 +1,37 @@
 <h1>Bugs#index</h1>
 
 
-
 <h1>Bugs in this project</h1>
+
+<center>
 
   <% if @bugs.count != 0 %>
 
     <div id="projects">
       <% @bugs.each do |project| %>
-        <%= render project %>
+        <h5> Title </h5>
+        <%= project.title %>
+        <br>
+        <br>
+        <h5> description </h5>
+
+        <%= project.description %>
+        <br>
         <p>
-          <%= link_to "Show this bug", project %>
+            <%= @bug %>
+          <%= link_to "Show this bug", bug_path(@bug) %>
         </p>
       <% end %>
     </div>
 
   <% else %>
-      <p>You have not been assigned to any project to assure quality</p>
+      <p>No bugs found yet</p>
   <% end %>
 
-<% end %>
 
 
 
+  </center>
 
 
 

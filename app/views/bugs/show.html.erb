@@ -1,2 +1,46 @@
 <h1>Bugs#show</h1>
-<p>Find me in app/views/bugs/show.html.erb</p>
+
+
+<%= @bug.status %>
+<%= @bug.bug_type %>
+
+<div class="container" >
+  <p>
+    <strong>Name</strong>
+    <%= @bug.title %>
+  </p>
+
+<p>
+  <strong> Description </strong>
+  <%= @bug.description  %>
+</p>
+
+
+<p>
+
+<strong> Deadline </strong>
+<%= @bug.deadline  %>
+</p>
+
+<p>
+
+
+
+<p>
+
+
+<strong> screenshot </strong>
+<%= @bug.screenshot  %>
+</p>
+
+
+
+<br><br>
+
+
+
+
+</div>
+
+
+<%= link_to "edit this bug", edit_bug_path(@bug) %>

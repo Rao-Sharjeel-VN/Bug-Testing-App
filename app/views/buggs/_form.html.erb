@@ -1,0 +1,56 @@
+
+
+<%= form_with(model: bugg) do |form| %>
+<%= @project %>
+
+  <% if bugg.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(bugg.errors.count, "error") %> prohibited this bugg from being saved:</h2>
+
+      <ul>
+        <% bugg.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.number_field :status %>
+  </div>
+  
+  <div>
+    <%= form.label :tbugg_ype, style: "display: block" %>
+    <%= form.number_field :bugg_type %>
+  </div>
+
+  <div>
+      <%= form.label :screenshot, style: "display: block" %>
+      <%= form.file_field :screenshot %>
+    </div>
+
+  <div>
+
+  <% if project != nil %>
+
+  <%= project %>
+
+  <%= form.hidden_field :project_id, value: @project.id %>
+
+  <% end %>
+
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,73 +1,71 @@
 <p style="color: green"><%= notice %></p>
 <center>
 <hr>
-<% if current_user.user_type == 0 %>
-  <h1>Projects</h1>
 
-  <% if @projects.count != 0 %>
+
+<!-- Here the projects are displayed in table -->
+
+<% if current_user.user_type == 0 %>
+  <%= link_to "New project", new_project_path, class: "btn btn-primary"%>
+  <hr>
+
+
+
+
+  <h1>Projects you have created</h1>
+
+
+<% elsif current_user.user_type == 1 %>
+
+      
+    
+
+  <h1>Projects to develop</h1>
+  
+<% elsif current_user.user_type == 2 %>
+<%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
+<br>
+<br>
+
+  <h1>Projects to test</h1>
+
+
+  <% end %>
+
+<% if @projects.count != 0 %>
 
   <div class="container" id="projects">
+  <table class="table table-light ">
+    <% num = 0 %>
+    <thead>
+    <tr>
+      <th scope="col">Sr. no.</th>
+      <th scope="col">Name</th>
+      <th scope="col">Manager</th>
+      
+    </tr>
+    </thead>
+    <tbody>
     <% @projects.each do |project| %>
-      <%= render project %>
-      <p>
-        <%= link_to "Show this project", project %>
-      </p>
-      <hr>
+    <tr>
+      <th scope="row"> <%= num=num+1 %> </th>
+      <td> <%= link_to project.name, project %> </td>
+      <td> <%= project.user.name %> </td>
+      
+    </tr>
     <% end %>
-    </div>
   
-
-  <% else %>
-      <p>You have not created any projects yet</p>
-  <% end %>
+     </tbody>
+    </table>
 
 
-  <%= link_to "New project", new_project_path %>
-
-  <% end %>
-
-<% if current_user.user_type == 1 %>
-
-  <h1>Your Assigned Project to develop</h1>
-
-  <% if @projects.count != 0 %>
-
-    <div class = "container" id="projects">
-      <% @projects.each do |project| %>
-        <%= render project %>
-        <p>
-          <%= link_to "Show this project", project %>
-        </p>
-      <% end %>
-      <hr>
-    </div>
-
-
-  <% else %>
-      <p>You have not been assigned to any project to develop</p>
-  <% end %>
-
-  <% end %>
-
-<%  if current_user.user_type == 2  %>
-
-<h1>Your Assigned Project to Assure Quality</h1>
-
-  <% if @projects.count != 0 %>
-
-    <div id="projects">
-      <% @projects.each do |project| %>
-        <%= render project %>
-        <p>
-          <%= link_to "Show this project", project %>
-        </p>
-      <% end %>
-    </div>
-
-  <% else %>
-      <p>You have not been assigned to any project to assure quality</p>
-  <% end %>
-
+<% else %>
+  <p>No projects to show</p>
 <% end %>
+
+    
+
+
+ 
 
 </center>

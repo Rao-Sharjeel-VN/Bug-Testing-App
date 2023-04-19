@@ -1,0 +1,74 @@
+<center>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>All Buggs created by You</h1>
+
+<div id="buggs">
+
+<% if @buggs.count != 0 %>
+
+<div class="container" id="projects">
+<table class="table table-light ">
+  <% num = 0 %>
+  <thead>
+  <tr>
+    <th scope="col">Sr. no.</th>
+    <th scope="col">Title</th>
+    <th scope="col">Type</th>
+    <th scope="col">Status</th>
+    
+  </tr>
+  </thead>
+  <tbody>
+  <% @buggs.each do |bugg| %>
+  <tr>
+    <th scope="row"> <%= num=num+1 %> </th>
+    <td> <%= link_to bugg.title, bugg %> </td>
+
+    <td>  
+      <% if bugg.bugg_type == 0  %>
+        Bug
+      <% else %>
+        Feature
+      <% end %>
+    </td>
+
+    <td> 
+    <% if bugg.status == 0  %>
+    New
+
+    <% elsif bugg.status == 1 %>
+    Started
+
+    <% else %>
+        <% if bugg.bugg_type == 1 %>
+          Completed
+        <% else %>
+          Resolved
+        <% end %>
+
+    <% end %>
+    </td>
+    
+       
+  </tr>
+  <% end %>
+
+  </tbody>
+  </table>
+
+
+<% else %>
+<p>No projects to show</p>
+<% end %>
+
+
+
+    <p>
+      <%= link_to "Back to Home", projects_path, class: "btn btn-info" %>
+    </p>
+
+</div>
+
+</center>

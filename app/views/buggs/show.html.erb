@@ -1,0 +1,34 @@
+<p style="color: green"><%= notice %></p>
+
+<center>
+<% #if @bugg.c/ount !=0 %> 
+  <%= render @bugg %>
+
+  <% #else %> 
+ 
+
+<% #end %> 
+
+
+<div>
+
+
+  <%= link_to "Edit this bugg", edit_bugg_path(@bugg), class: "btn btn-info" %> 
+
+  <br>
+  <br>
+
+  <%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
+
+  <br>
+  <br>
+
+  <%= link_to "Back to Home", projects_path, class: "btn btn-success" %>
+
+  <br>
+  <br>
+
+  <%= button_to "Destroy this bugg", @bugg, method: :delete %>
+</div>
+
+</center>

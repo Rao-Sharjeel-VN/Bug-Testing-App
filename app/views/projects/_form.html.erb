@@ -15,30 +15,28 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label "Name of your project", style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 <br>
-<strong> Add developer </strong>
-<% if !project.new_record? %>
-<div class="row">
-    <%= form.collection_check_boxes :user_ids, User.where(user_type: 1), :id, :name  do | cb | %>
-      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-    <% end %>
 
-   
+<% if !project.new_record? %>
+
+<strong> Add developer </strong>
+
+<div class="container row">
+    <%= form.collection_select(:user_ids, User.where(user_type: 1), :id, :name,{}, {:multiple => true}) %>
   </div>
 <% end %>
 
 <br>
 
-<strong> Add QA </strong>
 
 <% if !project.new_record? %>
-<div class="row">
-    <%= form.collection_check_boxes :user_ids, User.where(user_type: 2), :id, :name  do | cb | %>
-      <% cb.label(class: "checkbox-inline input_checkbox") {cb.check_box(class: "checkbox") + cb.text} %>
-    <% end %>
+<strong> Add QA </strong>
+<div class="container row">
+          
+<%= form.collection_select(:user_ids, User.where(user_type: 2), :id, :name,{}, {:multiple => true}) %>
    
   </div>
 <% end %>
@@ -46,7 +44,7 @@
 <br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Next" %>
   </div>
 <% end %>
 

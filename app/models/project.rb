@@ -1,11 +1,10 @@
 class Project < ApplicationRecord
+  validates :name, presence: true
 
-validates :name, presence: true
+  belongs_to :user
 
-belongs_to :user
+  has_many :user_projects
+  has_many :users, through: :user_projects
 
-has_many :user_projects
-has_many :users, through: :user_projects
-
-has_many :bugs
+  has_many :buggs
 end

@@ -1,49 +1,123 @@
-
-
-<hr>
-
 <center>
-<p style="color: green"><%= notice %></p>
+  <p style="color: green"><%= notice %></p>
+
+  <%= render @project, from: 0 %>
+
+  <div>
+    <%= link_to "Back to projects", projects_path, :class => "btn btn-primary" %>
+    <br>
+    <br>
+
+    <% if current_user.user_type == 0 %>
+      <%= link_to "Add or change developers/QA", edit_project_path(@project), class: "btn btn-success"%>
+      <br>
+      <br>
+      <%= button_to "Delete this project", @project, method: :delete %>
+      <% end %>
+  </div>
 
 
+  <% if current_user.user_type == 2 %>
 
-<%= render @project, from: 0 %>
+    <%= link_to "Add bug to this project", new_bugg_path( project_id: @project.id ), class: "btn btn-success" %>
 
-<div>
-<%= link_to "Back to projects", projects_path %>
+      <br>
+      <br>
 
-<br>
-<br>
-<% if current_user.user_type == 0 %>
+  <% end %>
+
+  <hr>
+
+  <% if current_user.user_type == 1 %>
+
+    <% @buggss =  @project.buggs %>
+
+    <% if @buggss.count != 0 %>
+      <h3> Here are all the bugs in this project </h3>
+    <% else %>
+      <h3> No bugs found in this project yet</h3>
+    <% end %>
 
 
-<%= link_to "Add or change developers/QA", edit_project_path(@project) %> 
-
+  <% elsif current_user.user_type ==  2 %>
+    <% @buggss =  @project.buggs.where(qa_id: current_user.id) %>
   <br>
-  <br>
-  
-  <%= button_to "Delete this project", @project, method: :delete %>
-</div>
+    <% if @buggss.count != 0 %>
+    <h3> Your created bugs in this project</h3>
+    <% else %>
+      <h3> You have not created any bugs in this project yet</h3>
+    <% end %>
+  <% end %>
 
+
+  <% if current_user.user_type == 1 || current_user.user_type ==  2 %>
+
+
+
+    <% if @project.buggs.count != 0 %>
+
+    
+
+    <div class="container" id="projects">
+    <table class="table table-light ">
+      <% num = 0 %>
+      <thead>
+      <tr>
+        <th scope="col">Sr. no.</th>
+        <th scope="col">Title</th>
+        <th scope="col">Type</th>
+        <th scope="col">Status</th>
+        
+      </tr>
+      </thead>
+      <tbody>
+      <% @buggss.each do |bugg| %>
+      <tr>
+        <th scope="row"> <%= num=num+1 %> </th>
+        <% if current_user.user_type == 2 %>
+          <td> <%= link_to bugg.title, bugg %> </td>
+        <% else %>
+          <td> <%= bugg.title %> </td>
+        <% end %>
+
+        <td>  
+      <% if bugg.bugg_type == 0  %>
+        Bug
+      <% else %>
+        Feature
+      <% end %>
+    </td>
+
+    <td> 
+    <% if bugg.status == 0  %>
+    New
+
+    <% elsif bugg.status == 1 %>
+    Started
+
+    <% else %>
+        <% if bugg.bugg_type == 1 %>
+          Completed
+        <% else %>
+          Resolved
+        <% end %>
+
+    <% end %>
+    </td>
+    
+       
+      </tr>
+      <% end %>
+    
+      </tbody>
+      </table>
+
+
+  <% else %>
+    <p>No projects to show</p>
+  <% end %>
 <% end %>
 
 
-
-<% if current_user.user_type == 2 %>
-
-<%= @project.name %>
-
-<%= link_to "Add bug to this project", new_bug_path( project_id: @project.id ) %>
-
-  <br>
-  <br>
-
-<%= link_to "See all bugs in this project", bugs_path( project_id: @project.id ) %>
-
-
-
-</div>
-
-<% end %>
 
 </center>

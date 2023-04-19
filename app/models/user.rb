@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :projects
   has_many :user_projects
-  has_many :assigned_projects, :through=>  :user_projects, :source=> :project
+  has_many :assigned_projects, :through => :user_projects, :source => :project
 
-  has_many :bugs
+  has_many :qa_buggs, class_name: "Bugg", foreign_key: 'id'
 end

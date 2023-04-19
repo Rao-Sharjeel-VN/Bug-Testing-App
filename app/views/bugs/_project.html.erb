@@ -1,0 +1,48 @@
+<div class="container" id="<%= dom_id project %>">
+  <p>
+    <strong>Name:</strong>
+    <%= project.name %>
+  </p>
+
+
+
+
+  <p>
+
+
+  <strong>Manager:</strong>
+  <%= project.user.name  %>
+</p>
+
+
+<strong>Developers:</strong>
+
+<div class = "row">
+<% project.users.each do | u | %>
+  <div> 
+    <% if u.user_type == 1 %>
+      <%= u.name %>
+    <% end %>
+  </div>
+<% end %>
+
+<br><br>
+
+<strong>QA:</strong>
+
+<div class = "row">
+<% project.users.each do | u | %>
+  <div> 
+    <% if u.user_type == 2 %>
+      <%= u.name %>
+    <% end %>
+  </div>
+<% end %>
+
+
+<br><br>
+
+
+
+
+</div>

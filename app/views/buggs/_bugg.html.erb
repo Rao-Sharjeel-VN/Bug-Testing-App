@@ -1,0 +1,58 @@
+<div id="<%= dom_id bugg %>">
+
+
+<p>
+<strong>Title</strong>
+<%= bugg.title  %>
+</p>
+
+
+<p>
+<strong>description</strong>
+<%= bugg.description  %>
+</p>
+
+
+<p>
+<strong>Type</strong>
+</p>
+
+<% if bugg.bugg_type == 0  %>
+    Bug
+<% else %>
+    Feature
+<% end %>
+
+
+<p>
+<strong>status</strong>
+</p>
+
+<% if bugg.status == 0  %>
+    New
+
+    <% elsif bugg.status == 1 %>
+    Started
+
+    <% else %>
+        <% if bugg.bugg_type == 1 %>
+          Completed
+        <% else %>
+           Resolved
+        <% end %>
+
+<% end %>
+
+<p>
+
+<strong>Project</strong>
+<%= bugg.project.name %>
+</p>
+
+
+<p>
+<strong>Screenshot</strong>
+<image src="<%= url_for(bugg.screenshot.url)%>" >
+</p>
+
+</div>
