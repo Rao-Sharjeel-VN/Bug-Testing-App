@@ -8,11 +8,12 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "main.css" %>
   </head>
 
   <body>
 
-  <div style="color:white; background: #2e9890;text-align:center;">
+  <div class="header" >
 
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -60,11 +61,17 @@
 
       </center>
 
-      <hr>
     
     <% end %>
 
     </div>
+
+
+
+
+
+
+    
 
     <%= yield %>
 

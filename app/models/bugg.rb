@@ -10,5 +10,4 @@ class Bugg < ApplicationRecord
   belongs_to :project, foreign_key: 'project_id'
   belongs_to :qa, class_name: "User", foreign_key: 'qa_id'
   belongs_to :solver, class_name: "User", foreign_key: 'solver_id', optional: true
-  
 end

@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
+
+body {
+	
+	font-family: "Roboto", Arial, sans-serif;
+	min-height: 100vh;
+	background-color: white;
+    color:101010
+}
+
+
+.header {
+	
+	width: 100%;
+	height: var(--heading-height);
+	color: white;
+	margin-top: -20px;
+	background: 
+		linear-gradient(rgba(0,0,0,.6), rgba(0, 18, 78, 0.6)),
+		
+		linear-gradient(#4e4376, #2b5876);
+	height: calc(var(--heading-height) + 10em);
+	
+}
+
+h1 {
+	font-size: calc(2.8em + 2.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 3rem 0 0 4.5rem;
+	text-shadow: .022em .022em .022em #111;
+	color: dodgerblue;
+}
+
+
+h2 {
+	font-size: calc(1.8em + 1.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 1rem 0 0 0;
+	text-shadow: .022em .022em .022em #111;
+	color: rgb(0, 69, 138);
+}
+
+
+h3{
+	font-size: calc(0.8em + 0.6vw);
+	font-weight: 700;
+	letter-spacing: .01em;
+	padding: 1rem 0 0 0;
+	text-shadow: .022em .022em .022em #004ca4;
+	color: dodgerblue;
+}
+

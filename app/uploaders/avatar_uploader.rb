@@ -6,10 +6,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
-  
 
   process resize_to_fill: [300, 200]
-  
+
   def extension_white_list
     %w(gif png)
   end

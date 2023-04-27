@@ -11,7 +11,6 @@ class Ability
       can :manage, UserProject
       can :manage, Bugg
 
-
     elsif user.user_type == 1
       can :manage, Bugg
       can :read, Project

@@ -5,12 +5,10 @@ class BuggsController < ApplicationController
   # GET /buggs or /buggs.json
   def index
     @pagy, @buggs = pagy(Bugg.where(qa_id: current_user.id), page: params[:page], items: 3)
-    
   end
 
   # GET /buggs/1 or /buggs/1.json
   def show
-
   end
 
   # GET /buggs/new
@@ -47,7 +45,7 @@ class BuggsController < ApplicationController
       print '000000000000000000000000000000000000000000000000000000000000'
 
       print update_bugg_params[:status]
-      print 'update_bugg_params[:solver_id]' 
+      print 'update_bugg_params[:solver_id]'
       print update_bugg_params
 
       if current_user.user_type == 1 && update_bugg_params[:status] == '2'
@@ -60,19 +58,19 @@ class BuggsController < ApplicationController
       elsif @bugg.update(bugg_params)
         format.html { redirect_to bugg_url(@bugg), notice: "Bugg was successfully updated." }
         format.json { render :show, status: :ok, location: @bugg }
-        
+
         if current_user.user_type == 1
           print "tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst  "
 
-          print params.require(:bugg).permit( :status )[:status] == '2'
-          print params.require(:bugg).permit( :status )[:status].class
-          if params.require(:bugg).permit( :status )[:status] == '2'
+          print params.require(:bugg).permit(:status)[:status] == '2'
+          print params.require(:bugg).permit(:status)[:status].class
+          if params.require(:bugg).permit(:status)[:status] == '2'
 
             print "tesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssst"
             # current_user.solved_buggs << @bugg
             # @bugg.update_attribute(:solver_id, current_user.id)
             # print(bugs)
-            
+
           end
         end
 
@@ -80,7 +78,6 @@ class BuggsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @bugg.errors, status: :unprocessable_entity }
       end
-
     end
   end
 
@@ -109,7 +106,4 @@ class BuggsController < ApplicationController
   def update_bugg_params
     params.require(:bugg).permit(:title, :description, :bugg_type, :deadline, :status, :screenshot, :project_id, :solver_id)
   end
-
-
-
 end

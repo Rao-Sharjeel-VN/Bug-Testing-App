@@ -37,7 +37,6 @@ class ProjectsController < ApplicationController
   # POST /projects or /projects.json
   def create
     @project = current_user.projects.create(project_params_new)
-    
 
     respond_to do |format|
       if @project.save
@@ -86,6 +85,7 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :user_id, user_ids: [])
   end
+
   def project_params_new
     params.require(:project).permit(:name, :user_id)
   end
