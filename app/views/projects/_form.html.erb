@@ -20,26 +20,16 @@
   </div>
 <br>
 
-<% if !project.new_record? %>
 
 <strong> Add developer </strong>
 
 <div class="container row">
-    <%= form.collection_select(:user_ids, User.where(user_type: 1), :id, :name,{}, {:multiple => true}) %>
+    <%= form.collection_select(:user_ids, User.where.not(user_type: 0), :id, :name,{}, {:multiple => true}) %>
   </div>
-<% end %>
 
 <br>
 
 
-<% if !project.new_record? %>
-<strong> Add QA </strong>
-<div class="container row">
-          
-<%= form.collection_select(:user_ids, User.where(user_type: 2), :id, :name,{}, {:multiple => true}) %>
-   
-  </div>
-<% end %>
 
 <br>
 

@@ -1,34 +1,45 @@
 <p style="color: green"><%= notice %></p>
 
 <center>
-<% #if @bugg.c/ount !=0 %> 
-  <%= render @bugg %>
 
-  <% #else %> 
+<% if current_user.user_type == 0 %>
+<%= render @bugg %>
  
 
-<% #end %> 
+<% elsif @bugg.qa_id == current_user.id or current_user.user_type == 1 %>
+
+  <%= render @bugg %>
+  <% if @bugg.status != 2 %>
+    <%= link_to "Edit this bugg", edit_bugg_path(@bugg), class: "btn btn-info" %> 
+  <% end %>
+
+  <br>
+  <br>
+
+  <% if @bugg.qa_id == current_user.id%>
+    <%= button_to "Destroy this bugg", @bugg, method: :delete %>
+  <% end %> 
+
+<% else %> 
+  <h2> You are unauthorised to see this </h2>
+<% end %> 
 
 
 <div>
 
 
-  <%= link_to "Edit this bugg", edit_bugg_path(@bugg), class: "btn btn-info" %> 
+  
 
-  <br>
-  <br>
+<% if @bugg.qa_id == current_user.id && current_user.user_type == 2%>
+<%= link_to "See your own bugs", buggs_path, class: "btn btn-primary" %>
+<% end %> 
 
-  <%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
-
+ 
   <br>
   <br>
 
   <%= link_to "Back to Home", projects_path, class: "btn btn-success" %>
 
-  <br>
-  <br>
-
-  <%= button_to "Destroy this bugg", @bugg, method: :delete %>
 </div>
 
 </center>

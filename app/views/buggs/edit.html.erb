@@ -4,7 +4,123 @@
 <h1>Editing bugg</h1>
 
 
-<%= render "form", bugg: @bugg, project: nil %>
+
+
+
+<% bugg = @bugg %>
+
+
+<% if bugg.status != 2 %>
+
+<%= form_with(model: bugg) do |form| %>
+  
+  <% if current_user.user_type == 2 %>
+  
+    <% if bugg.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(bugg.errors.count, "error") %> prohibited this bugg from being saved:</h2>
+  
+        <ul>
+          <% bugg.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+  
+
+    <div>
+    <strong>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title %>
+      </strong>
+    </div>
+
+    <div>
+     <strong> <%= form.label :description, style: "display: block" %>
+     </strong>
+      <%= form.text_field :description %>
+    </div>
+
+
+    <div>
+<strong>
+      <%= form.label :bugg_type, style: "display: block" %>
+      </strong>
+
+
+      <div class="container row">
+
+        <%= form.select :bugg_type, options_for_select([["Bug", 0], ["Feature", 1]])  %>
+      
+      </div>
+    </div>
+
+
+
+
+    <div>
+    <strong>
+    <%= form.label :screenshot, style: "display: block" %>
+    </strong>
+      <%= form.file_field :screenshot %>
+    </div>
+    
+  
+    <div>
+  
+    <% if @project != nil %>
+  
+   
+  
+    <%= form.hidden_field :project_id, value: @project.id %>
+  
+    <% end %>
+
+
+    <% elsif current_user.user_type == 1 %>
+
+
+    <div>
+
+            <h3>  <%= bugg.bugg_type==0 ? "This is a Bug" : "This is a feature" %> </h3>
+
+<strong>
+      <%= form.label :status, style: "display: block" %>
+</strong>
+<% if bugg.bugg_type == 0 %>
+    <% l_status = "Resolved" %>
+  <% else %>
+    <% l_status = "Completed" %>
+  <% end %>
+
+<div class="container row">
+
+  <%= form.select :status, options_for_select([["New", 0], ["Started", 1], [l_status, 2]])  %>
+
+</div>
+
+     
+    </div>
+    
+
+  <% end %>
+
+
+  <%= form.hidden_field :solver_id, value: current_user.id  %>
+      <%= form.submit %>
+    </div>
+  <% end %>
+  
+
+<br>
+
+
+
+
+
+
 
 <br>
 
@@ -15,9 +131,23 @@
   <br>
   <br>
 
-  <%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
 
+ 
+<% if current_user.user_type == 2 %>
+<div>
+<%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
 
 </div>
+<% end %> 
+
+</div>
+
+<% else %>
+
+<h2> Bug has been solved </h2>
+
+<%= link_to "Back to home", projects_path, class: "btn btn-primary" %>
+          <% end %>
+
 
 </center>

@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :assigned_projects, :through => :user_projects, :source => :project
 
   has_many :qa_buggs, class_name: "Bugg", foreign_key: 'id'
+  has_many :solved_buggs, class_name: "Bugg", foreign_key: 'id'
+
 end

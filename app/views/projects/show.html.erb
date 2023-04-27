@@ -1,15 +1,17 @@
 <center>
   <p style="color: green"><%= notice %></p>
+  
+  
+  <% if @project.user_ids.include? current_user.id or @project.user_id == current_user.id %>
 
-  <%= render @project, from: 0 %>
+   <%= render @project, from: 0 %>
 
   <div>
     <%= link_to "Back to projects", projects_path, :class => "btn btn-primary" %>
     <br>
     <br>
-
     <% if current_user.user_type == 0 %>
-      <%= link_to "Add or change developers/QA", edit_project_path(@project), class: "btn btn-success"%>
+      <%= link_to "Add or change developers/QA", edit_project_path(@project), class: "btn btn-success" %>
       <br>
       <br>
       <%= button_to "Delete this project", @project, method: :delete %>
@@ -18,17 +20,14 @@
 
 
   <% if current_user.user_type == 2 %>
-
     <%= link_to "Add bug to this project", new_bugg_path( project_id: @project.id ), class: "btn btn-success" %>
-
       <br>
       <br>
-
   <% end %>
 
   <hr>
 
-  <% if current_user.user_type == 1 %>
+  <% if current_user.user_type == 1 or current_user.user_type ==  0 %>
 
     <% @buggss =  @project.buggs %>
 
@@ -50,14 +49,9 @@
   <% end %>
 
 
-  <% if current_user.user_type == 1 || current_user.user_type ==  2 %>
+  <% if current_user.user_type == 1 or current_user.user_type ==  2 or current_user.user_type ==  0  %>
 
-
-
-    <% if @project.buggs.count != 0 %>
-
-    
-
+   
     <div class="container" id="projects">
     <table class="table table-light ">
       <% num = 0 %>
@@ -74,7 +68,7 @@
       <% @buggss.each do |bugg| %>
       <tr>
         <th scope="row"> <%= num=num+1 %> </th>
-        <% if current_user.user_type == 2 %>
+        <% if current_user.user_type != 3 %>
           <td> <%= link_to bugg.title, bugg %> </td>
         <% else %>
           <td> <%= bugg.title %> </td>
@@ -93,6 +87,7 @@
     New
 
     <% elsif bugg.status == 1 %>
+
     Started
 
     <% else %>
@@ -106,17 +101,109 @@
     </td>
     
        
-      </tr>
-      <% end %>
+    </tr>
     
-      </tbody>
-      </table>
-
-
-  <% else %>
-    <p>No projects to show</p>
   <% end %>
+    
+    </tbody>
+  </table>
+
+
+
+
+
+  <% if current_user.user_type == 1  %>
+  
+  <h3> Your solved bugs in this project</h3>
+
+  
+ 
+  <% @buggss1 = Bugg.where(project_id: @project.id) %>
+  <% @buggss = @buggss1.where(solver_id: current_user.id) %>
+
+  <% if @buggss.count != 0 %>
+   
+    <div class="container" id="projects">
+    <table class="table table-light ">
+      <% num = 0 %>
+      <thead>
+      <tr>
+        <th scope="col">Sr. no.</th>
+        <th scope="col">Title</th>
+        <th scope="col">Type</th>
+        <th scope="col">Status</th>
+        
+      </tr>
+      </thead>
+      <tbody>
+      <% @buggss.each do |bugg| %>
+      <tr>
+        <th scope="row"> <%= num=num+1 %> </th>
+        <% if current_user.user_type != 3 %>
+          <td> <%= link_to bugg.title, bugg %> </td>
+        <% else %>
+          <td> <%= bugg.title %> </td>
+        <% end %>
+
+        <td>  
+      <% if bugg.bugg_type == 0  %>
+        Bug
+      <% else %>
+        Feature
+      <% end %>
+    </td>
+
+    <td> 
+    <% if bugg.status == 0  %>
+    New
+
+    <% elsif bugg.status == 1 %>
+
+    Started
+
+    <% else %>
+        <% if bugg.bugg_type == 1 %>
+          Completed
+        <% else %>
+          Resolved
+        <% end %>
+
+    <% end %>
+    </td>
+    
+       
+    </tr>
+    
+  <% end %>
+    
+    </tbody>
+  </table>
+
+
+  
 <% end %>
+<% end %>
+
+
+
+
+  
+<% end %>
+
+
+
+
+
+
+<% else %>
+<%= link_to "Back to projects", projects_path, :class => "btn btn-primary" %>
+<br>
+<br>
+<% controller.redirect_to projects_path %>
+<%= flash[:error] = :NotAutorised %>
+    <p>You are not authorized to see this project</p>
+
+  <% end %>
 
 
 

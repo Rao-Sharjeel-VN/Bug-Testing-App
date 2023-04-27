@@ -6,18 +6,22 @@ class ProjectsController < ApplicationController
   # GET /projects or /projects.json
   def index
     if current_user.user_type == 0
-      @projects = current_user.projects
+      @pagy, @projects = pagy(current_user.projects, page: params[:page], items: 3)
     end
     if current_user.user_type == 1
-      @projects = current_user.assigned_projects
+      @pagy, @projects = pagy(current_user.assigned_projects, page: params[:page], items: 3)
     end
     if current_user.user_type == 2
-      @projects = current_user.assigned_projects
+      @pagy, @projects = pagy(current_user.assigned_projects, page: params[:page], items: 3)
     end
   end
 
   # GET /projects/1 or /projects/1.json
   def show
+    print "Test message from projects/show"
+    authorize! :read, @project
+  rescue CanCan::AccessDenied
+    redirect_to projects_path
   end
 
   # GET /projects/new
@@ -32,10 +36,13 @@ class ProjectsController < ApplicationController
 
   # POST /projects or /projects.json
   def create
-    @project = current_user.projects.create(project_params)
+    @project = current_user.projects.create(project_params_new)
+    
 
     respond_to do |format|
       if @project.save
+        @project.update(project_params)
+
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         format.json { render :show, status: :created, location: @project }
       else
@@ -78,6 +85,9 @@ class ProjectsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def project_params
     params.require(:project).permit(:name, :user_id, user_ids: [])
+  end
+  def project_params_new
+    params.require(:project).permit(:name, :user_id)
   end
 
   def check_manager

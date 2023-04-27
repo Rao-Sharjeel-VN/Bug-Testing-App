@@ -42,8 +42,8 @@
 <strong>
       <%= form.label :bugg_type, style: "display: block" %>
       </strong>
-      <%= form.radio_button :bugg_type, 0, :checked => 'true' %> Bug
-      <%= form.radio_button :bugg_type, 1 %> Feature
+      <%= form.select :bugg_type, options_for_select([["Bug", 0], ["Feature", 1]])  %>
+      
     </div>
 
 
@@ -52,12 +52,8 @@
 <strong>
       <%= form.label :status, style: "display: block" %>
 </strong>
-      <%= form.radio_button :status, 0, :checked => 'true' %> New
-      <%= form.radio_button :status, 1 %> started 
-
-     
-        <%= form.radio_button :status, 2 %> Completed
-
+    <%= form.select :status, options_for_select([["New", 0]])  %>
+      
       
       
     </div>
@@ -88,9 +84,15 @@
 
 <br>
 
+
+
+<% if current_user.user_type == 2 %>
 <div>
-  <%= link_to "See all bugs", buggs_path, class: "btn btn-success" %>
+ <%= link_to "See all buggs", buggs_path, class: "btn btn-success" %>
 </div>
+<% end %> 
+
+
 
 
 </center>

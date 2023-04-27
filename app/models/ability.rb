@@ -9,9 +9,11 @@ class Ability
     if user.user_type == 0
       can :manage, Project, :user_id => user.id
       can :manage, UserProject
+      can :manage, Bugg
+
 
     elsif user.user_type == 1
-
+      can :manage, Bugg
       can :read, Project
 
     elsif user.user_type == 2

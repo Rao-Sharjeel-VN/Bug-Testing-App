@@ -1,4 +1,4 @@
-<div id="<%= dom_id bugg %>">
+<div id="<%= dom_id bugg %>" class="container border border-info" style="background: #d2f7f7">
 
 
 <p>
@@ -52,7 +52,12 @@
 
 <p>
 <strong>Screenshot</strong>
+<% if (bugg.screenshot.url) != nil  %>
 <image src="<%= url_for(bugg.screenshot.url)%>" >
+<% else %>
+<p> No screenshot was attached </p>
+<% end %>
+
 </p>
 
 </div>

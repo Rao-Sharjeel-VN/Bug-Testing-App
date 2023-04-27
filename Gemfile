@@ -32,6 +32,7 @@ gem 'cancancan'
 gem 'carrierwave', '>= 3.0.0.beta', '< 4.0'
 gem 'pry', '~> 0.13.1'
 gem 'rubocop', '~> 1.50', require: false
+gem 'pagy'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
