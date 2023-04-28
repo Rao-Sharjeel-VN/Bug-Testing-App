@@ -1,0 +1,5 @@
+$('.delete_project').bind('ajax:success', function() {
+   $(this).closest('tr').fadeOut();
+   alert("You are about to delelet the project!");
+   console.log("This is from JS")
+});

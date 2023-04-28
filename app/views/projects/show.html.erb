@@ -4,6 +4,7 @@
   
   <% if @project.user_ids.include? current_user.id or @project.user_id == current_user.id %>
 
+
    <%= render @project, from: 0 %>
 
   <div>
@@ -14,7 +15,8 @@
       <%= link_to "Add or change developers/QA", edit_project_path(@project), class: "btn btn-success" %>
       <br>
       <br>
-      <%= button_to "Delete this project", @project, method: :delete %>
+      
+      <%= button_to "Delete this project", @project, method: :delete, data: {confirm: "Are you sure?"}, :remote => true, :class => 'delete_project' %>
       <% end %>
   </div>
 
@@ -196,6 +198,8 @@
 
 
 <% else %>
+
+
 <%= link_to "Back to projects", projects_path, :class => "btn btn-primary" %>
 <br>
 <br>

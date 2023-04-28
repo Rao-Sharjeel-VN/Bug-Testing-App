@@ -1,8 +1,9 @@
 <center>
 
 
-<%= form_with(model: project) do |form| %>
-  <% if project.errors.any? %>
+<%= form_with(model: project, local: false ) do |form| %>
+    <% if project.errors.any? %>
+  
     <div style="color: red">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
 
@@ -30,13 +31,43 @@
 <br>
 
 
-
 <br>
 
   <div>
-    <%= form.submit "Next" %>
+    <%= form.submit "Next", class: "project-btn", id:"pro" %>
   </div>
+
+
+
+
+  <span id="helpBlock" class="help-block"></span>
 <% end %>
 
 
 </center> 
+
+
+<script>
+
+
+document.getElementById("pro").addEventListener("click", function(event){
+ 
+  event.preventDefault()
+});
+
+
+  $(".project-btn").click(function(event) {
+    let url = "/"
+    event.preventDefault()
+    $.ajax({
+        url: url,
+        success: function() {
+            console.log('button pressed')
+        },
+        error: function() {
+            console.log('failure')
+        }
+    });
+}
+  )
+</script>

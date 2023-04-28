@@ -1,0 +1,6 @@
+$(".notice").remove();
+ 
+global.$ = jQuery;
+$(“#helpBlock”).append(‘<div class=”notice”><%= escape_javascript(@errorMessage[0])%></div>’);
+
+('#helpBlock').html("<%= j (render partial: 'items') %>")

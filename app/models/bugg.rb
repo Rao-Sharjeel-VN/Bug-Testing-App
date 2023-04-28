@@ -1,4 +1,5 @@
 class Bugg < ApplicationRecord
+  acts_as_paranoid
   validates :title, presence: true
   validates :status, presence: true
   validates :bugg_type, presence: true

@@ -34,6 +34,7 @@ gem 'pry', '~> 0.13.1'
 gem 'rubocop', '~> 1.50', require: false
 gem 'pagy'
 gem 'acts_as_paranoid'
+gem 'turbolinks_render'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

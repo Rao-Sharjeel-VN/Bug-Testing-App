@@ -6,7 +6,7 @@ class ProjectsController < ApplicationController
   # GET /projects or /projects.json
   def index
     if current_user.user_type == 0
-      @pagy, @projects = pagy(current_user.projects, page: params[:page], items: 3)
+      @pagy, @projects = pagy(current_user.projects.with_deleted, page: params[:page], items: 3)
     end
     if current_user.user_type == 1
       @pagy, @projects = pagy(current_user.assigned_projects, page: params[:page], items: 3)
@@ -37,16 +37,23 @@ class ProjectsController < ApplicationController
   # POST /projects or /projects.json
   def create
     @project = current_user.projects.create(project_params_new)
+    @errorMessage = []
 
     respond_to do |format|
       if @project.save
         @project.update(project_params)
-
+        format.js
+      
+        format.html {	render :index }
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         format.json { render :show, status: :created, location: @project }
       else
+        format.js
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }
+        @project.errors.each do |key, value|
+          @errorMessage.push
+        end
       end
     end
   end
@@ -57,9 +64,11 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
+        format.js   { render :layout => false }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }
+        format.js   { render :layout => false }
       end
     end
   end
@@ -93,4 +102,7 @@ class ProjectsController < ApplicationController
   def check_manager
     return current_user.user_type == 0
   end
+
+
+
 end

@@ -46,6 +46,7 @@
       <th scope="col">Total QA</th>
       <th scope="col">Total Bugs</th>
       
+      
     </tr>
     </thead>
     <tbody>
@@ -54,11 +55,20 @@
       
     <tr>
       <th scope="row"> <%= num=num+1 %> </th>
-      <td> <%= link_to project.name, project %> </td>
+      <td>
+      <% if project.deleted_at == nil %> 
+
+        <%= link_to project.name, project %>
+        <% else %>
+        <%= project.name %> 
+
+      <% end %>
+      </td>
       <td> <%= project.user.name %> </td>
       <td> <%= project.users.where(user_type:1).count %> </td>
       <td> <%= project.users.where(user_type:2).count %> </td>
       <td> <%= project.bugg_ids.count %> </td>
+     
     </tr>
 
     <% end %>
