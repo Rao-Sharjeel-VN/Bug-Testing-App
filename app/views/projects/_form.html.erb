@@ -1,7 +1,7 @@
 <center>
 
 
-<%= form_with(model: project, local: false ) do |form| %>
+<%= form_with(model: project, local: false, id: "form_id" ) do |form| %>
     <% if project.errors.any? %>
   
     <div style="color: red">
@@ -14,6 +14,8 @@
       </ul>
     </div>
   <% end %>
+
+  <h4 id="helpBlock" class="help-block"></h4>
 
   <div>
     <%= form.label "Name of your project", style: "display: block" %>
@@ -34,40 +36,29 @@
 <br>
 
   <div>
+  <button id="pro2" onclick> Btn 2</button>
     <%= form.submit "Next", class: "project-btn", id:"pro" %>
   </div>
 
 
 
 
-  <span id="helpBlock" class="help-block"></span>
+  
 <% end %>
 
 
 </center> 
 
 
-<script>
+<script type="module">
 
+var formData = $('#form_id').serializeArray()
 
-document.getElementById("pro").addEventListener("click", function(event){
- 
-  event.preventDefault()
-});
+  $("#pro").on("click", function(e){
+    e.preventDefault();
+    var formData = $('#form_id').serializeArray()
+    console.log(formData[1]["value"])
+  });
 
-
-  $(".project-btn").click(function(event) {
-    let url = "/"
-    event.preventDefault()
-    $.ajax({
-        url: url,
-        success: function() {
-            console.log('button pressed')
-        },
-        error: function() {
-            console.log('failure')
-        }
-    });
-}
-  )
 </script>
+

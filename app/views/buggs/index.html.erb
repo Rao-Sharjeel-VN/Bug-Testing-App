@@ -24,7 +24,7 @@
   <% @buggs.each do |bugg| %>
   <tr>
     <th scope="row"> <%= num=num+1 %> </th>
-    <td> <%= link_to bugg.title, bugg %> </td>
+    <td> <%= link_to bugg.title, bugg: bugg %> </td>
 
     <td>  
       <% if bugg.bugg_type == 0  %>
@@ -51,7 +51,6 @@
     <% end %>
     </td>
     
-       
   </tr>
   <% end %>
 
@@ -63,12 +62,9 @@
     <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
     </center> 
 
-
 <% else %>
 <p>No projects to show</p>
 <% end %>
-
-
 
     <p>
       <%= link_to "Back to Home", projects_path, class: "btn btn-info" %>

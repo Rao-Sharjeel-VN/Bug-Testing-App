@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  
   before_action :set_project, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[index show edit update destroy]
   load_and_authorize_resource
@@ -38,16 +39,17 @@ class ProjectsController < ApplicationController
   def create
     @project = current_user.projects.create(project_params_new)
     @errorMessage = []
-
+    print('@projec')
+    print(@project)
     respond_to do |format|
       if @project.save
         @project.update(project_params)
         format.js
-      
-        format.html {	render :index }
+        # format.html {	render :show }
         format.html { redirect_to project_url(@project), notice: "Project was successfully created." }
         format.json { render :show, status: :created, location: @project }
       else
+        print("1111111111111111111111111111111111111111111111111")
         format.js
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }

@@ -9,6 +9,8 @@ class BuggsController < ApplicationController
 
   # GET /buggs/1 or /buggs/1.json
   def show
+    print '====================================================================='
+
   end
 
   # GET /buggs/new
@@ -53,6 +55,7 @@ class BuggsController < ApplicationController
         if @bugg.update(update_bugg_params)
           format.html { redirect_to bugg_url(@bugg), notice: "Bugg was successfully updated." }
           format.json { render :show, status: :ok, location: @bugg }
+          format.js
         end
 
       elsif @bugg.update(bugg_params)
@@ -86,7 +89,7 @@ class BuggsController < ApplicationController
     @bugg.destroy
 
     respond_to do |format|
-      format.html { redirect_to buggs_url, notice: "Bugg was successfully destroyed." }
+      format.html { redirect_to projects_url, notice: "Bugg was successfully destroyed." }
       format.json { head :no_content }
     end
   end

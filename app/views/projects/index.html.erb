@@ -22,7 +22,7 @@
 
   <h1>Projects to develop</h1>
   
-<% elsif current_user.user_type == 2 %>
+<% elsif current_user.user_type == 3 %>
 <%= link_to "See all bugs", buggs_path, class: "btn btn-primary" %>
 <br>
 <br>
@@ -31,6 +31,8 @@
 
 
   <% end %>
+
+
 
 <% if @projects.count != 0 %>
 

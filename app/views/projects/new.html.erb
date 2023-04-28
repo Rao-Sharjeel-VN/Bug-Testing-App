@@ -4,8 +4,6 @@
 
 <button class="btn btn-primary" id="button" > THis is a button </button>
 
-
-
 <%= render "form", project: @project%>
 
 <br>
@@ -14,17 +12,17 @@
   <%= link_to "Back to projects", projects_path %>
 </div>
 
-
 <div id="manipulate"> this is to be changed </div>
 
 </center>
 
+<script type="module"  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script type="module" >
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js">
-</script>
-<script>
 $("#button").on("click", function(){
-$('#manipulate').html("Hello World. Welcome to Tutlane");
-alert('Reloaded')
-});
+  document.getElementById("manipulate").style.color = "red";
+  console.log("new.html.erb")
+  $('#manipulate').html("Hello World. Welcome to Tutlane");
+  });
+
 </script>

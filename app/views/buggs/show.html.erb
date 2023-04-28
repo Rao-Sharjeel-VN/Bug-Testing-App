@@ -30,7 +30,7 @@
 
   
 
-<% if @bugg.qa_id == current_user.id && current_user.user_type == 2%>
+<% if @bugg.qa_id == current_user.id && current_user.user_type == 3 %>
 <%= link_to "See your own bugs", buggs_path, class: "btn btn-primary" %>
 <% end %> 
 

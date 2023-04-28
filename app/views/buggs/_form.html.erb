@@ -1,11 +1,11 @@
+<center>
 
-
-<%= form_with(model: bugg) do |form| %>
+<%= form_with(model: bugg, local: false, id: "form_id" ) do |form| %>
 <%= @project %>
 
   <% if bugg.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(bugg.errors.count, "error") %> prohibited this bugg from being saved:</h2>
+      <h5><%= pluralize(bugg.errors.count, "error") %> prohibited this bugg from being saved:</h5>
 
       <ul>
         <% bugg.errors.each do |error| %>
@@ -15,8 +15,6 @@
 
     </div>
   <% end %>
-
-  
 
   <div>
     <%= form.label :title, style: "display: block" %>
@@ -53,6 +51,8 @@
 
   <% end %>
 
-    <%= form.submit %>
+    <%= form.submit "Submit", class: "project-btn", id:"pro" %>
   </div>
 <% end %>
+
+</center>
