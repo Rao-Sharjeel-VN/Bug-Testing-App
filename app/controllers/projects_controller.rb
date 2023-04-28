@@ -1,5 +1,4 @@
 class ProjectsController < ApplicationController
-  
   before_action :set_project, only: %i[show edit update destroy]
   before_action :authenticate_user!, only: %i[index show edit update destroy]
   load_and_authorize_resource
@@ -53,7 +52,7 @@ class ProjectsController < ApplicationController
         format.js
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }
-        @project.errors.each do |key, value|
+        @project.errors.each do |_key, _value|
           @errorMessage.push
         end
       end
@@ -66,11 +65,11 @@ class ProjectsController < ApplicationController
       if @project.update(project_params)
         format.html { redirect_to project_url(@project), notice: "Project was successfully updated." }
         format.json { render :show, status: :ok, location: @project }
-        format.js   { render :layout => false }
+        format.js   { render layout: false }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @project.errors, status: :unprocessable_entity }
-        format.js   { render :layout => false }
+        format.js   { render layout: false }
       end
     end
   end
@@ -104,7 +103,4 @@ class ProjectsController < ApplicationController
   def check_manager
     return current_user.user_type == 0
   end
-
-
-
 end

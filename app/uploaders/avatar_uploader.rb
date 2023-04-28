@@ -10,7 +10,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   process resize_to_fill: [300, 200]
 
   def extension_white_list
-    %w(gif png)
+    %w[gif png]
   end
 
   # Override the directory where uploaded files will be stored.
@@ -42,7 +42,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %w(gif png)
+    %w[gif png]
   end
 
   # Override the filename of the uploaded files:

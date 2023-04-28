@@ -10,7 +10,6 @@ class BuggsController < ApplicationController
   # GET /buggs/1 or /buggs/1.json
   def show
     print '====================================================================='
-
   end
 
   # GET /buggs/new

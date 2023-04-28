@@ -35,8 +35,7 @@ gem 'rubocop', '~> 1.50', require: false
 gem 'pagy'
 gem 'acts_as_paranoid'
 gem 'turbolinks_render'
-gem 'jsbundling-rails'  # needed for bootstrap javascript
-
+gem 'jsbundling-rails' # needed for bootstrap javascript
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
